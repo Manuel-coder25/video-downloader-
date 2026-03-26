@@ -1,68 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Downloader</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-        body{background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;padding:20px}
-        .container{max-width:800px;margin:0 auto;background:white;padding:30px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
-        h1{text-align:center;color:#333;margin-bottom:10px}
-        .subtitle{text-align:center;color:#666;margin-bottom:30px}
-        input{width:100%;padding:15px;border:2px solid #ddd;border-radius:50px;margin-bottom:15px;font-size:16px;outline:none}
-        input:focus{border-color:#667eea}
-        button{width:100%;padding:15px;background:#667eea;color:white;border:none;border-radius:50px;font-size:18px;cursor:pointer}
-        button:hover{background:#764ba2}
-        .platforms{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
-        .badge{padding:8px 15px;border-radius:20px;color:white;font-size:14px}
-        .tiktok{background:#000}.youtube{background:#ff0000}.instagram{background:#e1306c}.facebook{background:#1877f2}
-        nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-        .logo{font-size:24px;font-weight:bold;color:#667eea}
-        .nav-links{display:flex;gap:20px}
-        .nav-links a{text-decoration:none;color:#333}
-        footer{text-align:center;margin-top:30px;color:white}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Downloader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 15px 0;
+      border: none;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #00ccaa;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <div class="logo">📥 VideoDown</div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
-        
-        <h1>Free Social Media Video Downloader</h1>
-        <p class="subtitle">Download videos from TikTok, YouTube, Instagram & Facebook</p>
-        
-        <input type="url" placeholder="Paste video link here..." id="videoUrl">
-        <button onclick="download()">Download Now</button>
-        
-        <div class="platforms">
-            <span class="badge tiktok">TikTok</span>
-            <span class="badge youtube">YouTube</span>
-            <span class="badge instagram">Instagram</span>
-            <span class="badge facebook">Facebook</span>
-        </div>
-    </div>
-    
-    <footer>
-        <p>&copy; 2026 Video Downloader. All rights reserved.</p>
-    </footer>
 
-    <script>
-        function download(){
-            var url = document.getElementById('videoUrl').value;
-            if(!url){
-                alert('Please enter a video URL');
-                return;
-            }
-            alert('Processing: ' + url + '\n\nThis is a demo. Add backend API for real downloads.');
-        }
-    </script>
+  <div class="container">
+    <h1>🎬 Video Downloader</h1>
+    <p>Paste your video link below</p>
+
+    <input type="text" id="link" placeholder="Enter TikTok / YouTube URL">
+    <br>
+    <button onclick="download()">Download</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function download() {
+      let link = document.getElementById("link").value;
+
+      if (!link) {
+        document.getElementById("result").innerText = "⚠️ Please enter a link";
+        return;
+      }
+
+      document.getElementById("result").innerText =
+        "⏳ Processing... real download coming soon";
+    }
+  </script>
+
 </body>
 </html>
