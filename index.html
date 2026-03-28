@@ -65,19 +65,55 @@
       return;
     }
 
-    result.innerText = "⏳ Preparing your download...";
+    result.innerHTML = "⏳ Preparing your download...";
 
     setTimeout(() => {
+      let redirectUrl = "";
+
+      // TikTok
       if (link.includes("tiktok.com")) {
-        window.location.href = "https://snaptik.app/en?url=" + encodeURIComponent(link);
+        redirectUrl = "https://snaptik.app/en?url=" + encodeURIComponent(link);
       } 
+      // YouTube
       else if (link.includes("youtube.com") || link.includes("youtu.be")) {
-        window.location.href = "https://yt1s.com/en?q=" + encodeURIComponent(link);
+        redirectUrl = "https://yt1s.com/en?q=" + encodeURIComponent(link);
+      } 
+      // Instagram
+      else if (link.includes("instagram.com")) {
+        redirectUrl = "https://igram.world/?url=" + encodeURIComponent(link);
       } 
       else {
         result.innerText = "❌ Unsupported link";
+        return;
       }
+
+      result.innerHTML = `
+        ✅ Choose Download Option:<br><br>
+
+        <button onclick="goDownload('${redirectUrl}')">
+          Download (Normal)
+        </button>
+        <br><br>
+
+        <button onclick="watchAdThenDownload('${redirectUrl}')">
+          💎 Download HD (Watch Ad)
+        </button>
+      `;
     }, 3000);
+  }
+
+  function goDownload(url) {
+    window.location.href = url;
+  }
+
+  function watchAdThenDownload(url) {
+    let result = document.getElementById("result");
+
+    result.innerHTML = "📺 Showing ad... please wait";
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 5000);
   }
 </script>
 </body>
