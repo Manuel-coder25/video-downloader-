@@ -58,26 +58,26 @@
 <script>
   function download() {
     let link = document.getElementById("link").value.trim();
+    let result = document.getElementById("result");
 
     if (!link) {
-      document.getElementById("result").innerText = "⚠️ Please enter a link";
+      result.innerText = "⚠️ Please enter a link";
       return;
     }
 
-    // Detect TikTok
-    if (link.includes("tiktok.com")) {
-      window.location.href = "https://snaptik.app/en?url=" + encodeURIComponent(link);
-      return;
-    }
+    result.innerText = "⏳ Preparing your download...";
 
-    // Detect YouTube
-    if (link.includes("youtube.com") || link.includes("youtu.be")) {
-      window.location.href = "https://yt1s.com/en?q=" + encodeURIComponent(link);
-      return;
-    }
-
-    document.getElementById("result").innerText =
-      "❌ Unsupported link (TikTok & YouTube only for now)";
+    setTimeout(() => {
+      if (link.includes("tiktok.com")) {
+        window.location.href = "https://snaptik.app/en?url=" + encodeURIComponent(link);
+      } 
+      else if (link.includes("youtube.com") || link.includes("youtu.be")) {
+        window.location.href = "https://yt1s.com/en?q=" + encodeURIComponent(link);
+      } 
+      else {
+        result.innerText = "❌ Unsupported link";
+      }
+    }, 3000);
   }
 </script>
 </body>
