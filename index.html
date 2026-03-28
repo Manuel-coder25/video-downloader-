@@ -55,20 +55,30 @@
 
     <p id="result"></p>
   </div>
+<script>
+  function download() {
+    let link = document.getElementById("link").value.trim();
 
-  <script>
-    function download() {
-      let link = document.getElementById("link").value;
-
-      if (!link) {
-        document.getElementById("result").innerText = "⚠️ Please enter a link";
-        return;
-      }
-
-      document.getElementById("result").innerText =
-        "⏳ Processing... real download coming soon";
+    if (!link) {
+      document.getElementById("result").innerText = "⚠️ Please enter a link";
+      return;
     }
-  </script>
 
+    // Detect TikTok
+    if (link.includes("tiktok.com")) {
+      window.location.href = "https://snaptik.app/en?url=" + encodeURIComponent(link);
+      return;
+    }
+
+    // Detect YouTube
+    if (link.includes("youtube.com") || link.includes("youtu.be")) {
+      window.location.href = "https://yt1s.com/en?q=" + encodeURIComponent(link);
+      return;
+    }
+
+    document.getElementById("result").innerText =
+      "❌ Unsupported link (TikTok & YouTube only for now)";
+  }
+</script>
 </body>
 </html>
